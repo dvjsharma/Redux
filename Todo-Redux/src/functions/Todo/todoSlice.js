@@ -1,7 +1,8 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState ={
-    todos: [{id: nanoid(), text: "keep grinding"}]
+    // todos: [{id: nanoid(), text: "keep grinding"}]
+    todos: []
 }
 
 export const todoSlice = createSlice({
@@ -19,10 +20,24 @@ export const todoSlice = createSlice({
             state.todos = state.todos.filter((todo)=> todo.id !== action.payload ) //just accessing id via param
         },
         updateTodo: (state, action)=>{
-            console.log("update")
+            state.todos = state.todos.map((todo) =>{
+                if(todo.id===action.payload.id){
+                    return {...todo, text: action.payload.text}
+                }
+                else{
+                    return todo
+                }
+            })
         },
         toggleTodo: (state, action)=>{
-            console.log("toggle")
+            state.todos = state.todos.map((todo) =>{
+                if(todo.id===action.payload.id){
+                    return {...todo, ischecked: !todo.ischecked}
+                }
+                else{
+                    return todo
+                }
+            })
         }
     }
 })

@@ -6,10 +6,10 @@ function App() {
 
 
   return (
-    <>
+    <div className="h-screen bg-gray-900 flex flex-col text-center p-20">
       <TodoForm/>
       <Todos/>
-    </>
+    </div>
   )
 }
 
